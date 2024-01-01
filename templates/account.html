@@ -1,0 +1,11 @@
+{% extends 'navbar.html' %}
+{% block navbar %}
+ <div class="container my-2">
+     <p for="name"> Name : {{ name }}</p><br>
+     <p for="name">Ph No : {{ph}}</p><br>
+     <p for="name">Email : {{email}}</p><br>
+     <a class="btn btn-outline-success" href="{% url 'Logout' %}">Signout</a>
+
+
+ </div>
+{% endblock navbar%}

@@ -1,0 +1,31 @@
+
+{% extends "navbar.html" %}
+{% block navbar %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" style="color:blue ;" role="alert">
+        <strong>Message:</strong> {{ message }}
+    </div>
+    {% endfor %}
+    <div class="container">
+    <form method="post">
+        {% csrf_token %}
+
+            <label for="fname">First-name : </label>
+            <input type="text" name="fname" class="Input" placeholder="enter user first name" required>
+            <br><br>
+            <label for="lname">Last Name : </label>
+            <input type="text" name="lname" placeholder="enter user last name"required>
+            <br><br>
+            <label for="phone_no">Phone No. : </label>
+            <input type="text" name="number" placeholder="enter user phone number"required>
+            <br><br>
+            <label for="Email">Email : </label>
+            <input type="email" name="email" placeholder="enter user email"required>
+            <br><br>
+            <label for="password">Create Password : </label>
+            <input type="password" name="password"  placeholder="enter user password"required>
+            <br><br>
+            <input type="submit" class="btn btn-outline-primary">
+    </form>
+</div>
+{% endblock navbar %}

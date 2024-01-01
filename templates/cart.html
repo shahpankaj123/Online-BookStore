@@ -1,0 +1,36 @@
+{% extends 'navbar.html' %}
+{% block navbar %}
+
+<table class="table my-5">
+  <thead>
+    <tr>
+      <th scope="col">Product_id</th>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for data in cart %}
+<tr>
+      <th scope="row">{{data.id}}</th>
+      <td><img src={{data.product.img.url}} alt="error to load" width="100px" height="120px"></td>
+      <td>{{data.product.title}}</td>
+      <td>{{data.quantity}}</td>
+      <td>RS.{{data.quantity}}*{{data.product.price}}</td>
+      <td><a href="{% url 'cartdel' data.id %}"><input class="btn btn-danger" type="submit"name="Removed"></a></td>
+</tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<div class=""style="float:right">
+    <p class="my-3 mx-3" ><b>Total Price - ${{totalprice}}</b></p>
+    <a class="btn btn-outline-success my-3 mx-3" href="checkout" >Make Payment</a>
+</div>
+
+
+{% endblock navbar %}

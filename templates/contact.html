@@ -1,0 +1,33 @@
+
+{% extends 'navbar.html' %}
+{% block navbar %}
+<div class="container">
+    <form  method="post">
+        {% csrf_token %}
+        <div class="form-group" >
+            <span>Name</span>
+            <input class="form-control"type="text" name="name"required>
+        </div><br>
+         <div class="form-group">
+            <span>Email</span>
+            <input class="form-control"type="email" name="email"required>
+        </div><br>
+         <div class="form-group">
+            <span>mobile</span>
+            <input class="form-control" type="number" name="mobile"required>
+        </div><br> 
+        <div class="form-group">
+            <span>description</span>
+            <textarea class="form-control" name="textarea" id="" cols="30" rows="5"required></textarea>
+        </div><br>
+        <input class="btn btn-primary" type="submit"name="submit">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock navbar %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="icon" type="image/x-icon" href="media/images/icon1.png">
+    <style>
+        .image img {
+            width: 100%;
+        }
+
+        .form1 {
+            -webkit-flex: 0 1 auto;
+            -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+        }
+
+        .fill {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+        }
+
+        .flex-container {
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            background: rgb(241, 241, 241);
+            
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    {% extends 'navbar.html' %}
+    {% block navbar %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" style="color:blue ;" role="alert">
+        <strong>Message:</strong> {{ message }}
+    </div>
+    {% endfor %}
+    <div class="image">
+        <img src="https://rukminim1.flixcart.com/flap/1800/1800/image/b3fe381767050079.jpg?q=80" alt="invalid">
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+            <div class="flex-container" id="{{product.id}}" class="fill">
+                <img src={{product.img.url}} alt="error" width="140px" height="170px">
+
+                <p style="overflow:auto">{{product.title}}</p>
+                <p> Price - ${{product.price}} </p>
+
+                <form method="post" class="form1">
+                    {% csrf_token %}
+                    <input type="hidden" name="proid" value={{product.id}}>
+                    <button class="btn btn-outline-success" style="width:140px; " type="submit" name="submit"
+                        value="Add To Card">Add To Cart</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="text-center">
+            copyright&#169; 2022
+        </div>
+
+    </footer>
+
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>
+{% endblock navbar %}

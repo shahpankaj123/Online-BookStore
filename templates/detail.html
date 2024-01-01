@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <style>
+        .content button {
+            margin-top: 10px;
+        }
+        .footer{
+            background-color: rgba(43, 43, 43, 0.542);
+            width:100%;
+            color: rgb(20, 20, 25);
+            padding: 10px;
+        }
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 10%;
+        }
+        p{
+            font-size: 25px;
+        }
+        button{
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-bottom: 12px;
+
+        }
+    </style>
+</head>
+
+<body>
+{% extends 'navbar.html' %}
+{% block navbar %}
+    <div class="row my-3">
+            <div class="col" style="margin-left:5%;">
+                <h3> {{final.title}}</h3>
+                <p>Author - {{final.author}}</p>
+
+                <p>Rating - {{final.rating}}</p>
+                <p>Pages - {{final.pages}}</p>
+                <p>Bookformat - {{final.bookfor}}</p>
+                <p>Link - <a href={{final.link}} target="_blank" style="text-decoration:none;" rel="noopener noreferrer">Open on Amazon</a>.</p>
+                <p>ISBN - {{final.isbn}}</p>
+                <p>Genre- {{final.genre}}</p>
+                <p style="font-size:18px">Description - {{final.desc}}</p>
+
+            </div>
+            <div class="col text-center">
+                <img src={{final.img.url}} alt="Image Not found" width="300px" height="450px"><br>
+                <button class="btn btn-success my-3" style=" width:300px;" href="/checkout" >Buy Now</button>
+            </div>
+
+    </div>
+    <footer class="footer">
+        <div class="text-center">
+            copyright&#169; 2022   
+        </div>
+        
+    </footer>
+{% endblock navbar %}
+</body>
+
+</html>
