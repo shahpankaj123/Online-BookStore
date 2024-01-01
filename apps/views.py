@@ -8,8 +8,10 @@ class Home(View):
     def get(self,request):
         product = Product.get_all_product()#[:540:10]
         email = request.session.get('email')
-        user = User.objects.get(email=email)
-        cart_item_count = CartItem.objects.filter(cart__user=user).count()
+        cart_item_count=0
+        if email:
+          user = User.objects.get(email=email)
+          cart_item_count = CartItem.objects.filter(cart__user=user).count()
         return render(request, 'index.html',{'products':product,'email':email,'n':cart_item_count})
     
     def post(self,request):

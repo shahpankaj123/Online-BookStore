@@ -1,0 +1,20 @@
+{% extends 'navbar.html' %}
+{% block navbar %}
+<div class="container">
+    <form  method="post">
+        {% csrf_token %}
+         <div class="form-group">
+            <span>Token</span>
+            <input class="form-control" type="number" name="tk" required>
+        </div><br>
+        <input class="btn btn-primary" type="submit"name="submit">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock navbar %}
