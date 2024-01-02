@@ -158,7 +158,7 @@ class Verifytoken(View):
 class Changepassword(View):
     def post(self,request):
         id = request.POST.get('id')
-        password= request.POST.get('email')
+        password= request.POST.get('password')
         print(id,password)
         user=User.objects.get(id=id)
         if user:
