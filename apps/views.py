@@ -73,6 +73,7 @@ class contact(View):
         messages.success(request, 'your form submitted success fully')
         return redirect('home')  
     
+@method_decorator(login_required(login_url='Login'), name='dispatch')  
 class OrderBook(View):
     def get(self,request):
         email = request.session.get('email')
@@ -103,6 +104,7 @@ class OrderBook(View):
         return render(request, 'checkout.html', {'email': email,'msg':msg})
 
 
+@method_decorator(login_required(login_url='Login'), name='dispatch')
 class OrderView(View):
     def get(self,request):
         email = request.session.get('email')
