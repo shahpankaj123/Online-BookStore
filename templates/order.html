@@ -1,0 +1,30 @@
+{% extends 'navbar.html' %}
+{% block navbar %}
+
+<table class="table my-5">
+  <thead>
+    <tr>
+      <th scope="col">OrderItem_id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in data %}
+    <tr>
+        <td scope="col">{{d.id}}</td>
+        <td scope="col">{{d.product.title}}</td>
+        <td scope="col">{{d.quantity}}</td>
+        <td scope="col">{{d.item_price}}</td>
+      </tr>
+    
+    {% endfor %}
+
+  </tbody>
+</table>  
+
+
+
+
+{% endblock navbar %}

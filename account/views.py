@@ -4,6 +4,7 @@ from .models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.conf import settings
 from django.core.mail import send_mail
 from django.utils.encoding import smart_str,force_bytes,DjangoUnicodeDecodeError
@@ -103,7 +104,7 @@ class Login(View):
                 return redirect('Login')
                    
        
-
+@method_decorator(login_required(login_url='Login'), name='dispatch')
 class Logout(View):
    def get(self, request, *args, **kwargs):
      logout(request)

@@ -1,6 +1,6 @@
 {% extends 'navbar.html' %}
 {% block navbar %}
-
+{{msg}}
 <table class="table my-5">
   <thead>
     <tr>
@@ -29,7 +29,10 @@
 </table>
 <div class=""style="float:right">
     <p class="my-3 mx-3" ><b>Total Price - ${{totalprice}}</b></p>
-    <a class="btn btn-outline-success my-3 mx-3" href="checkout" >Make Payment</a>
+    <form action="{% url 'order' %}" method='post'>
+      {% csrf_token %}
+    <input type="submit" class="btn btn-outline-primary">
+    </form>
 </div>
 
 
