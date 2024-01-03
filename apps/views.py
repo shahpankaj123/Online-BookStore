@@ -1,20 +1,27 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.views import View
 from .models import Product,Contact,Cart,CartItem,Order,OrderItem
 from account.models import User
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 class Home(View):
     def get(self,request):
         product = Product.get_all_product()#[:540:10]
         email = request.session.get('email')
         cart_item_count=0
+        pd=0
+        pr=0
+        for p in product:
+            if p.rating > pd:
+                pr=p.id
+                pd=p.rating
         if email:
           user = User.objects.get(email=email)
           cart_item_count = CartItem.objects.filter(cart__user=user).count()
-        return render(request, 'index.html',{'products':product,'email':email,'n':cart_item_count})
+        return render(request, 'index.html',{'products':product,'email':email,'n':cart_item_count,'rt':pr})
     
     def post(self,request):
         proid = request.POST.get('proid')
@@ -114,7 +121,16 @@ class OrderView(View):
 
 
 
-
+@method_decorator(login_required(login_url='Login'), name='dispatch')
+class BookDoc_View(View):
+  def get(self,request, document_id):
+    print(document_id)
+    document = get_object_or_404(Product, pk=document_id)
+    file1='media/'+ str(document.file)
+    with open(file1, 'rb') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=mypdf.pdf'
+        return response
  
 
 

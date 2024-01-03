@@ -16,6 +16,7 @@ class Product(models.Model):
     desc = models.CharField(max_length=1000, default='')
     genre = models.CharField(max_length=200, default='')
     img = models.ImageField(upload_to='product/')
+    file=models.FileField(upload_to='book/')
     isbn = models.CharField(max_length=50, default='')
     link= models.CharField(max_length=200, default='')
     pages= models.IntegerField(default=0)

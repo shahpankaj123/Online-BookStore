@@ -8,6 +8,7 @@ urlpatterns = [
     path('cart/',Cartview.as_view(),name='cart'),
     path('cartdel/<id>',Cartdel.as_view(),name='cartdel'),
     path('orderbook/',OrderBook.as_view(),name='order'),
-    path('order/',OrderView.as_view(),name='orderview')
+    path('order/',OrderView.as_view(),name='orderview'),
+    path('documents/<int:document_id>/', BookDoc_View.as_view(), name='open_document'),
    
 ]

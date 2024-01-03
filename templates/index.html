@@ -61,10 +61,14 @@
         <div class="row">
             {% for product in products %}
             <div class="flex-container" id="{{product.id}}" class="fill">
+                {% if product.id == rt %}
+                 <p style="color:green;">High Rated Book</P>         
+                {% endif %}
                 <img src={{product.img.url}} alt="error" width="140px" height="170px">
 
                 <p style="overflow:auto">{{product.title}}</p>
                 <p> Price - ${{product.price}} </p>
+                <a href="{% url 'open_document' document_id=product.id %}">Open Document</a>
 
                 <form method="post" class="form1">
                     {% csrf_token %}
